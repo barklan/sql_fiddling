@@ -95,7 +95,11 @@ function psql {  # Connect to running database container and enter psql command.
 }
 
 function sql {
-  cat "./sql/$1.sql" | _dc exec -T db psql -U postgres -d app
+  cat "./sql/$1.sql" | _dc exec -T db psql -U postgres -d app | tee sql_output.tempfile
+}
+
+function s {
+  sql "${@}"
 }
 
 function db:dump {  # Make database dump.
