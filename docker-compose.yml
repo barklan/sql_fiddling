@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+
+  db:
+    image: 'postgres:13'
+    volumes:
+      - app-db-data:/var/lib/postgresql/data/pgdata
+    env_file:
+      - ./environment/.env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      # THIS IS UNSAFE!
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
+
+  ms:
+    image: 'mcr.microsoft.com/mssql/server:2019-latest'
+    # volumes:
+      # - ms-db-data
+    env_file:
+      - ./environment/.env
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 1433:1433
+    profiles:
+      - extra
+
+  pgadmin:
+    image: 'dpage/pgadmin4'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      - ./environment/db_servers.json:/pgadmin4/servers.json
+    env_file:
+      - ./environment/.env
+    ports:
+      - 5050:5050
+    logging:
+      driver: "none"
+
+volumes:
+  app-db-data:
+  # ms-db-data:
+  pgadmin:
