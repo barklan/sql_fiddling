@@ -32,6 +32,11 @@ function _build_run_down {
   docker-compose down
 }
 
+function _use_env {
+  sort -u environment/.env | grep -v '^$\|^\s*\#' > './environment/.env.tempfile'
+  export $(cat environment/.env.tempfile | xargs)
+}
+
 # -----------------------------------------------------------------------------
 # * Local functions.
 
@@ -57,7 +62,7 @@ function down {  # Stop stack.
 
 function down:c {  # Stop stack removing docker volumes.
   _dc down -v --remove-orphans
-  _dc -f docker-stack.yml down -v --remove-orphans
+  # _dc -f docker-stack.yml down -v --remove-orphans
 }
 
 function db:backup {  # Backup database internally. Beware of -c flag.
@@ -82,12 +87,8 @@ function db:restore {
 #   db:restore
 # }
 
-# function lint {
-#   sh ./scripts/lint.all.sh
-# }
-
-function lint:sql {
-  bash ./scripts/lint.sql.sh
+function lint {
+  bash ./scripts/lint/lint.all.sh
 }
 
 function psql {  # Connect to running database container and enter psql command.
@@ -95,11 +96,26 @@ function psql {  # Connect to running database container and enter psql command.
 }
 
 function sql {
-  cat "./sql/$1.sql" | _dc exec -T db psql -U postgres -d app | tee sql_output.tempfile
+  cat "./sql/$1.sql" | _dc exec -T db psql -U postgres -d app | tee psql_output.tempfile
+}
+
+function sql:csv {
+  cat "./sql/$1.sql" | _dc exec -T db psql -U postgres -d app --csv | tee ./data/output/psql_output.csv
 }
 
 function s {
   sql "${@}"
+}
+
+function ms {
+  # todo modify this to connect to remote database
+  # -S server, -U user, -P password, -d database name
+  _use_env
+  _dc exec ms /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d $MS_SQL_SERVER_DB -i "/sql/$1.sql"
+}
+
+function ms:wip {
+  _dc exec ms /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "yourStrong(!)Password"
 }
 
 function db:dump {  # Make database dump.

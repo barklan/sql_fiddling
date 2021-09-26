@@ -16,3 +16,9 @@ vendor/
 
 # Temporary files
 *.tempfile
+
+# Cache
+.cache/
+
+# dotenv linter produces this
+*.bak

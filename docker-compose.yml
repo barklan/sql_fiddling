@@ -5,6 +5,7 @@ services:
     image: 'postgres:13'
     volumes:
       - app-db-data:/var/lib/postgresql/data/pgdata
+      - ./data:/data
     env_file:
       - ./environment/.env
     environment:
@@ -16,16 +17,16 @@ services:
 
   ms:
     image: 'mcr.microsoft.com/mssql/server:2019-latest'
-    # volumes:
-      # - ms-db-data
+    volumes:
+      - ./sql:/sql
     env_file:
       - ./environment/.env
     environment:
       - ACCEPT_EULA=Y
     ports:
       - 1433:1433
-    profiles:
-      - extra
+    # profiles:
+      # - extra
 
   pgadmin:
     image: 'dpage/pgadmin4'
