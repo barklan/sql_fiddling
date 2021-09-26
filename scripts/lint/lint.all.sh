@@ -74,7 +74,7 @@ fi
 
 bash ./scripts/lint/lint_support_files.sh
 
-python ./scripts/lint/validate_filenames.py
+go run ./scripts/lint/validate_filenames.go -e 'vendor|\.git|\.cache' -i '.*\.py$|.*\.go$|.*\.sql$'
 
 # * App specific checks
 # cd backend/app/app
