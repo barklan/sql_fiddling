@@ -1,3 +1,4 @@
--- SELECT * FROM users;
+SELECT first_name FROM person
 
-SELECT * FROM schema_migrations_history;
+
+-- SELECT * FROM schema_migrations_history;

@@ -1,6 +1,6 @@
 BEGIN;
 
-ALTER TABLE 'users' DROP COLUMN mood;
+ALTER TABLE 'person' DROP COLUMN mood;
 DROP TYPE enum_mood;
 
 COMMIT;
