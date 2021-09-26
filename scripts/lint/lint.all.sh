@@ -53,7 +53,8 @@ docker run --rm -v `pwd`:/workdir -w /workdir linter codespell . -I ./scripts/li
 # Run `pre-commit autoupdate` to update hooks
 mkdir -p ./.cache/pre-commit
 docker run --rm -v `pwd`:/workdir -v `pwd`/.cache/pre-commit:/.cache/pre-commit \
--w /workdir -e PRE_COMMIT_HOME=/.cache/pre-commit linter pre-commit run --all-files --config /workdir/scripts/lint/.pre-commit-config.yaml
+-w /workdir -e PRE_COMMIT_HOME=/.cache/pre-commit linter pre-commit run --all-files \
+--config /workdir/scripts/lint/.pre-commit-config.yaml
 
 if [ "${LINT_IN_CI_CD}" == 'true' ]; then
     curl -sSfL https://raw.githubusercontent.com/dotenv-linter/dotenv-linter/master/install.sh | sh -s
