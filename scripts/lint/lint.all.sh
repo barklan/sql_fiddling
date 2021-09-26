@@ -74,6 +74,8 @@ fi
 
 bash ./scripts/lint/lint_support_files.sh
 
+python ./scripts/lint/validate_filenames.py
+
 # * App specific checks
 # cd backend/app/app
 # bash -c "cd .. && poetry check"
@@ -91,10 +93,13 @@ bash ./scripts/lint/lint_support_files.sh
 
 # * Go app specific checks
 # MAX_ACCEPTED_LINES=300 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/files_length.sh
+# bash ./scripts/lint/max_line_length.sh
 
 # * SQL
-bash ./scripts/lint/lint.sql.sh
 MAX_ACCEPTED_LINES=150 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/files_length.sh
+MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/max_line_length.sh
+bash ./scripts/lint/lint.sql.sh
+
 
 C='\033[1;32m' # Color
 NC='\033[0m' # No Color

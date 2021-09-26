@@ -4,17 +4,19 @@ import typing as t
 
 a: str = 4 # type: ignore
 
+EXTS_TO_CHECK = (".py", ".ipynb", ".go", ".sql")
+
 def good_file_paths(top_dir: str = ".") -> t.Iterator[str]:
     for dir_path, dir_names, filenames in os.walk(top_dir):
         dir_names[:] = [d for d in dir_names if d != "scripts" and d[0] not in "._"]
         for filename in filenames:
             if filename == "__init__.py":
                 continue
-            if os.path.splitext(filename)[1] in (".py", ".ipynb"):
+            if os.path.splitext(filename)[1] in (".py", ".ipynb", ".go", ".sql"):
                 yield os.path.join(dir_path, filename).lstrip("./")
 
 
-print("Checking for validity of filenames (.py files)")
+print("Checking for validity of filenames of following files: ", EXTS_TO_CHECK)
 
 filepaths = list(good_file_paths())
 assert filepaths, "good_file_paths() failed!"

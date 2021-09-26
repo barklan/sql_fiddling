@@ -91,6 +91,10 @@ function lint {
   bash ./scripts/lint/lint.all.sh
 }
 
+function lint:sql {
+  bash ./scripts/lint/lint.sql.sh
+}
+
 function psql {  # Connect to running database container and enter psql command.
   _dc exec db psql -U postgres -d app
 }
@@ -127,6 +131,14 @@ function db:dump:r {  # Restore database from dump.
   _dc_quiet exec db bash -c "dropdb -U postgres app && createdb -U postgres -T template0 app"
   _dc_quiet exec -T db psql -U postgres --quiet --set ON_ERROR_STOP=on app < dump.sql
   echo "Database restored successfully."
+}
+
+function db:makemigrations {
+  bash ./scripts/local/makemigrations.sh "${@}"
+}
+
+function db:migrate {
+  bash ./scripts/local/migrate.sh "${@}"
 }
 
 function back {  # Run any command you want in the running backend container.
