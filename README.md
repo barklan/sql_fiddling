@@ -7,5 +7,6 @@ https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?vie
 ### TODO
 
 - [ ] Explore SQL generation with golang.
-- [ ] Explore Golang migrate and possibility to keep revision history in database.
+- [x] Explore Golang migrate and possibility to keep revision history in database.
 - [ ] Explore Distributed databases with postgres
+- [ ] Explore [dockertest](https://github.com/ory/dockertest)
