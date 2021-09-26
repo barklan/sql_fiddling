@@ -93,8 +93,8 @@ go run ./scripts/lint/validate_filenames.go -e 'vendor|\.git|\.cache' -i '.*\.py
 # cd ../../..
 
 # * Go app specific checks
-# MAX_ACCEPTED_LINES=300 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/files_length.sh
-# bash ./scripts/lint/max_line_length.sh
+MAX_ACCEPTED_LINES=300 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/files_length.sh
+MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/max_line_length.sh
 
 # * SQL
 MAX_ACCEPTED_LINES=150 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/files_length.sh

@@ -10,4 +10,5 @@ https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?vie
 - [x] Explore Golang migrate and possibility to keep revision history in database.
 - [ ] Explore Distributed databases with postgres.
 - [x] Explore [dockertest](https://github.com/ory/dockertest).
-    - [ ] Share dockertest setup script between packages.
+    - [x] Share dockertest setup script between packages.
+- [ ] Explore MiniKube

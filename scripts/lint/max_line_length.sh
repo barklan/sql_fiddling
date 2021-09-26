@@ -6,7 +6,7 @@ export MAX_LINE_LENGTH="${MAX_LINE_LENGTH:-90}"
 export FILENAME_EXT_TO_LINT="${FILENAME_EXT_TO_LINT:-go}"
 
 
-find . -maxdepth 10 -type f -name "*.${FILENAME_EXT_TO_LINT}" -print0 | while IFS= read -r -d $'\0' file; do
+find . -maxdepth 10 -type f -path ./vendor -prune -name "*.${FILENAME_EXT_TO_LINT}" -print0 | while IFS= read -r -d $'\0' file; do
     report="$(wc -L < $file)"
     longest_line=$(wc -L < $file | awk '{print $1;}')
 

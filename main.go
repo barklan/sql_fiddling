@@ -21,11 +21,6 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	tx := db.MustBegin()
-	tx.MustExec("INSERT INTO person (first_name, last_name, email) VALUES ($1, $2, $3)", "Jason", "Moiron", "jmoiron@jmoiron.net")
-	tx.MustExec("INSERT INTO person (first_name, last_name, email) VALUES ($1, $2, $3)", "John", "Doe", "johndoeDNE@gmail.net")
-	tx.Commit()
-
 	people := []usermodels.Person{}
 	db.Select(&people, "select * from person")
 	jason, john := people[0], people[1]

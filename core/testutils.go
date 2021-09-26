@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/ory/dockertest/v3"
 	"github.com/ory/dockertest/v3/docker"
@@ -16,9 +15,8 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
-func PrepareTestDB() *sqlx.DB {
+func PrepareTestDB() (*sql.DB, *dockertest.Pool, *dockertest.Resource) {
 	var db *sql.DB
-	var dbx *sqlx.DB
 	pool, err := dockertest.NewPool("")
 	if err != nil {
 		log.Fatalf("Could not connect to docker: %s", err)
@@ -70,7 +68,5 @@ func PrepareTestDB() *sqlx.DB {
 		"postgres", driver)
 	migrationManager.Up()
 
-	// Convert sql.DB to sqlx.DB
-	dbx = sqlx.NewDb(db, "postgres")
-	return dbx
+	return db, pool, resource
 }
