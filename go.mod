@@ -1,4 +1,4 @@
-module sqlfiddle
+module github.com/barklan/sql_fiddling
 
 go 1.17
 
@@ -10,6 +10,7 @@ require (
 	github.com/lib/pq v1.10.3
 	github.com/ory/dockertest/v3 v3.8.0
 	github.com/sirupsen/logrus v1.8.1
+	google.golang.org/protobuf v1.27.1
 )
 
 require (

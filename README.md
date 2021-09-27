@@ -12,3 +12,16 @@ https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?vie
 - [x] Explore [dockertest](https://github.com/ory/dockertest).
     - [x] Share dockertest setup script between packages.
 - [ ] Explore MiniKube
+- [ ] gRPC and proto3 (protocol buffers)
+    - [ ] Intermediate goal - fastapi as a client golang as a server
+- [ ] What's up with golang contexts?
+
+### Protocol Buffers
+
+```bash
+sudo pacman -S protobuf
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+```
+
+protoc -I=./helloworld --go_out=./helloworld ./helloworld/greeter.proto

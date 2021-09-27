@@ -8,7 +8,7 @@ import (
 	_ "github.com/lib/pq"
 	log "github.com/sirupsen/logrus"
 
-	"sqlfiddle/core"
+	"github.com/barklan/sql_fiddling/core"
 )
 
 var dbx *sqlx.DB

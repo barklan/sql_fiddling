@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	usermodels "sqlfiddle/users/models"
+	usermodels "github.com/barklan/sql_fiddling/users/models"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
