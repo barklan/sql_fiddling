@@ -4,16 +4,27 @@ To connect to ms sql server from docker container - read this
 
 https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash#connect-to-sql-server
 
-### TODO
+## TODO
 
 - [x] Explore SQL generation with golang. (squirrel)
-- [x] Explore Golang migrate and possibility to keep revision history in database.
+- [x] Explore Golang migrate and possibility to keep revision history in database solely through postgresql triggers.
 - [x] Explore [dockertest](https://github.com/ory/dockertest).
     - [x] Share dockertest setup script between packages.
 - [ ] Explore MiniKube
-- [ ] gRPC and proto3 (protocol buffers)
-    - [ ] Intermediate goal - fastapi as a client golang as a server
 - [ ] What's up with golang contexts?
+- [ ] Mongodb
+- [ ] CockroachDB
+
+## gRPC as an alternative to OpenAPI?
+
+https://cloud.google.com/blog/products/api-management/api-design-101-links-our-most-popular-posts
+
+(create, retrieve, update, delete and list)
+Stick to method names
+
+Use this to make proto files human readable and documented
+
+https://github.com/pseudomuto/protoc-gen-doc
 
 ### Protocol Buffers
 
@@ -24,3 +35,7 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
 
 protoc -I=./helloworld --go_out=./helloworld ./helloworld/greeter.proto
+
+## GraphQL as an alternative to OpenAPI (probably overkill)
+
+https://github.com/99designs/gqlgen

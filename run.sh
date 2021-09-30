@@ -100,7 +100,11 @@ function psql {  # Connect to running database container and enter psql command.
 }
 
 function sql {
-    cat "$1" | _dc exec -T db psql -U postgres -d app | tee psql_output.tempfile
+    cat "$1" | _dc exec -T db psql -U postgres -d app # | tee psql_output.tempfile
+}
+
+function sql:line {
+    sed "$2q;d" "$1" | _dc exec -T db psql -U postgres -d app # | tee psql_output.tempfile
 }
 
 function sql:csv {

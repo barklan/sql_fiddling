@@ -31,11 +31,28 @@
             ],
         },
         {
-            "label": "format sql",
+            "label": "sql format",
             "command": "bash run.sh lint:sql:fix ${relativeFile}",
             "presentation": {
                 "close": true,
             }
         },
+        {
+            "label": "sql run file",
+            "command": "bash run.sh sql ${file}",
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+            }
+        },
+        {
+            "label": "sql run current line",
+            "command": "bash run.sh sql:line ${file} ${lineNumber}",
+            "presentation": {
+                "clear": false,
+                "reveal": "always",
+                "focus": false,
+            }
+        }
     ],
 }
