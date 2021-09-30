@@ -6,9 +6,8 @@ https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?vie
 
 ### TODO
 
-- [ ] Explore SQL generation with golang.
+- [x] Explore SQL generation with golang. (squirrel)
 - [x] Explore Golang migrate and possibility to keep revision history in database.
-- [ ] Explore Distributed databases with postgres.
 - [x] Explore [dockertest](https://github.com/ory/dockertest).
     - [x] Share dockertest setup script between packages.
 - [ ] Explore MiniKube

@@ -4,7 +4,6 @@ go 1.17
 
 require (
 	github.com/Masterminds/squirrel v1.5.0
-	github.com/bxcodec/faker/v3 v3.6.0
 	github.com/golang-migrate/migrate/v4 v4.15.0
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/lib/pq v1.10.3

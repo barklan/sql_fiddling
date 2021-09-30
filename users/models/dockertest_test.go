@@ -11,7 +11,7 @@ import (
 	"github.com/barklan/sql_fiddling/core"
 )
 
-var dbx *sqlx.DB
+var dbx *sqlx.DB // nolint:gochecknoglobals
 
 func TestMain(m *testing.M) {
 	db, pool, resource := core.PrepareTestDB()
