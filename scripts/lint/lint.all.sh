@@ -99,7 +99,6 @@ MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/max_line_length.s
 # * SQL
 MAX_ACCEPTED_LINES=150 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/files_length.sh
 MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/max_line_length.sh
-bash ./scripts/lint/lint.sql.sh
 
 
 C='\033[1;32m' # Color
