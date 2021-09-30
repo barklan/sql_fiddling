@@ -65,40 +65,17 @@ else
 fi
 
 
-if [ "${LINT_IN_CI_CD}" == 'true' ]; then
-    jscpd --threshold 2 --ignore "**/.venv/**" .
-else
-    # use --format "go" to lint only golang files
-    docker run --rm -v `pwd`:/workdir -w /workdir linter jscpd --threshold 2 --ignore "
-    **/.venv/**,**/vendor/**,**/.cache/**" .
-fi
-
-bash ./scripts/lint/lint_support_files.sh
-
-go run ./scripts/lint/validate_filenames.go -e 'vendor|\.git|\.cache' -i '.*\.py$|.*\.go$|.*\.sql$'
-
-# * App specific checks
-# cd backend/app/app
-# bash -c "cd .. && poetry check"
-# if [ ! -f "../poetry.lock" ]; then
-    # echo "No poetry.lock file found, please restore it from previous revision or create a new one."
-    # exit 1
+# if [ "${LINT_IN_CI_CD}" == 'true' ]; then
+#     jscpd --threshold 2 --ignore "**/.venv/**" .
+# else
+#     # use --format "go" to lint only golang files
+#     docker run --rm -v `pwd`:/workdir -w /workdir linter jscpd --threshold 2 --ignore "
+#     **/.venv/**,**/vendor/**,**/.cache/**" .
 # fi
 
-# MAX_LINE_LENGTH=120 bash ../../../scripts/lint.sh
-# bash ../../../scripts/files_length.sh
-# python ../../../scripts/validate_filenames.py
-# bandit --configfile ../../../scripts/bandit.yaml -r .
-# mypy --config-file="../../../mypy.ini" .
-# cd ../../..
+# bash ./scripts/lint/lint_support_files.sh
 
-# * Go app specific checks
-MAX_ACCEPTED_LINES=300 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/files_length.sh
-MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/max_line_length.sh
-
-# * SQL
-MAX_ACCEPTED_LINES=150 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/files_length.sh
-MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/max_line_length.sh
+go run ./scripts/lint/validate_filenames.go -e 'vendor|\.git|\.cache' -i '.*\.py$|.*\.go$|.*\.sql$'
 
 
 C='\033[1;32m' # Color

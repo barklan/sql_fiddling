@@ -13,17 +13,15 @@
     "tasks": [
         {
             "label": "lint",
-            "command": "bash run.sh lint",
-            "presentation": {
-                "group": "check"
-            }
+            "command": "./run.sh lint",
         },
         {
             "label": "test",
             "command": "bash run.sh test",
             "presentation": {
-                "group": "check"
-            }
+                "reveal": "always",
+                "focus": true,
+            },
         },
         {
             "label": "all checks",
@@ -33,10 +31,6 @@
             ],
         },
         {
-            "label": "lint sql",
-            "command": "bash run.sh lint:sql ${relativeFile}",
-        },
-        {
             "label": "format sql",
             "command": "bash run.sh lint:sql:fix ${relativeFile}",
             "presentation": {
@@ -44,25 +38,4 @@
             }
         },
     ],
-    "inputs": [
-        {
-          "id": "string",
-          "description": "text input",
-          "type": "promptString",
-          "default": ""
-          // type specific configuration attributes
-        },
-        {
-            "type":
-            "pickString",
-            "id": "runArgs",
-            "description": "run.sh function to execute",
-            "options": [
-              "lint",
-              "lint:sql",
-              "sql",
-            ],
-            "default": "component"
-        },
-    ]
 }

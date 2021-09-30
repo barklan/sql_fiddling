@@ -7,10 +7,11 @@
 package helloworld
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -145,11 +146,14 @@ func file_greeter_proto_rawDescGZIP() []byte {
 	return file_greeter_proto_rawDescData
 }
 
-var file_greeter_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_greeter_proto_goTypes = []interface{}{
-	(*HelloRequest)(nil),  // 0: helloworld.HelloRequest
-	(*HelloResponse)(nil), // 1: helloworld.HelloResponse
-}
+var (
+	file_greeter_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+	file_greeter_proto_goTypes  = []interface{}{
+		(*HelloRequest)(nil),  // 0: helloworld.HelloRequest
+		(*HelloResponse)(nil), // 1: helloworld.HelloResponse
+	}
+)
+
 var file_greeter_proto_depIdxs = []int32{
 	0, // 0: helloworld.HelloService.SayHello:input_type -> helloworld.HelloRequest
 	1, // 1: helloworld.HelloService.SayHello:output_type -> helloworld.HelloResponse

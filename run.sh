@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# Set an alias r='./run.sh'
-
 set -eo pipefail
 
 DC="${DC:-exec}"
@@ -71,12 +69,26 @@ function lint:sql:fix {
 }
 
 function lint:sql {
+    MAX_ACCEPTED_LINES=150 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/files_length.sh
+    MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=sql bash ./scripts/lint/max_line_length.sh
     docker run --rm -it -v `pwd`:/workdir -w /workdir linter bash -c "
     sqlfluff fix $1 --force --rules L003,L009,L010 && sqlfluff lint --ignore parsing $1"
 }
 
+function lint:go {
+    MAX_ACCEPTED_LINES=300 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/files_length.sh
+    MAX_LINE_LENGTH=90 FILENAME_EXT_TO_LINT=go bash ./scripts/lint/max_line_length.sh
+    ~/go/bin/golangci-lint run --enable-all
+}
+
+function lint:generic {
+    bash ./scripts/lint/lint.generic.sh
+}
+
 function lint {
-    bash ./scripts/lint/lint.all.sh
+    lint:generic
+    lint:go
+    lint:sql
 }
 
 function test {
@@ -93,10 +105,6 @@ function sql {
 
 function sql:csv {
     cat "./sql/$1.sql" | _dc exec -T db psql -U postgres -d app --csv | tee ./data/output/psql_output.csv
-}
-
-function s {
-    sql "${@}"
 }
 
 function ms {

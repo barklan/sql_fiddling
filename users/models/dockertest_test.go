@@ -1,4 +1,4 @@
-package models
+package models_test
 
 import (
 	"os"
@@ -14,11 +14,10 @@ import (
 var dbx *sqlx.DB
 
 func TestMain(m *testing.M) {
-
 	db, pool, resource := core.PrepareTestDB()
 	dbx = sqlx.NewDb(db, "postgres")
 
-	//Run tests
+	// Run tests
 	code := m.Run()
 
 	// You can't defer this because os.Exit doesn't care for defer
