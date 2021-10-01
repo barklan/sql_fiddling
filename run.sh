@@ -65,7 +65,7 @@ function db:restore {
 
 function lint:sql:fix {
     docker run --rm -it -v `pwd`:/workdir -w /workdir linter bash -c "
-    sqlfluff fix $1 --force --rules L003,L009,L010"
+    sqlfluff fix $1 --force"
 }
 
 function lint:sql {

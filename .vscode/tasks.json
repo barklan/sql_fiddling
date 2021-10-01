@@ -37,6 +37,10 @@
             }
         },
         {
+            "label": "sql lint",
+            "command": "bash run.sh lint:sql ${relativeFile}",
+        },
+        {
             "label": "sql run file",
             "command": "bash run.sh sql ${file}",
             "presentation": {
