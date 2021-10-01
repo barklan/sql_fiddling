@@ -12,8 +12,7 @@ https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?vie
     - [x] Share dockertest setup script between packages.
 - [ ] Explore MiniKube
 - [ ] What's up with golang contexts?
-- [ ] Mongodb
-- [ ] CockroachDB
+- [ ] Tidb
 
 ## gRPC as an alternative to OpenAPI?
 
@@ -39,3 +38,25 @@ protoc -I=./helloworld --go_out=./helloworld ./helloworld/greeter.proto
 ## GraphQL as an alternative to OpenAPI (probably overkill)
 
 https://github.com/99designs/gqlgen
+
+## Web assembly and TiDB
+
+https://github.com/pingcap/tidb
+
+https://github.com/tidb-incubator/tidb-wasm
+
+https://tour.tidb.io/
+
+https://github.com/mbasso/awesome-wasm#online-playground
+
+Some dudes even made webassembly run in postgres:
+
+https://medium.com/wasmer/announcing-the-first-postgres-extension-to-run-webassembly-561af2cfcb1
+
+or  sqlite
+
+https://github.com/sql-js/sql.js
+
+Or even some frontend web frameworks in webassembly and go:
+
+https://github.com/hexops/vecty

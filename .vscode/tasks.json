@@ -19,9 +19,8 @@
             "label": "test",
             "command": "bash run.sh test",
             "presentation": {
-                "reveal": "always",
-                "focus": true,
-            },
+                "group": "test"
+            }
         },
         {
             "label": "all checks",
