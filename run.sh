@@ -119,7 +119,17 @@ function ms {
 }
 
 function ms:wip {
-    _dc exec ms /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "yourStrong(!)Password"
+    _use_env
+    _dc exec ms /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d demo
+}
+
+function ms:generic {
+    _use_env
+    docker run --rm -it -e "ACCEPT_EULA=Y" -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d demo
+}
+
+function ms:generic2 {
+    docker run --rm -it -e "ACCEPT_EULA=Y" -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest /opt/mssql-tools/bin/sqlcmd -S demosqlwesteurope.database.windows.net -U student_01 -P "!MiptSql_01" -d demo
 }
 
 function db:dump {  # Make database dump.

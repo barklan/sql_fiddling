@@ -54,10 +54,15 @@ Some dudes even made webassembly run in postgres:
 https://medium.com/wasmer/announcing-the-first-postgres-extension-to-run-webassembly-561af2cfcb1
 
 or  sqlite
-d
 
 https://github.com/sql-js/sql.js
 
 Or even some frontend web frameworks in webassembly and go:
 
 https://github.com/hexops/vecty
+
+## Migrations again
+
+chapter 12. Managing Data (page 325)
+
+**chapter** 12
