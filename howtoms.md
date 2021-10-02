@@ -1,5 +1,7 @@
 ### MS SQL Server
 
+In every command replace `\` (backslash) with ``` (backtick) for Windows.
+
 To connect:
 
 ```bash

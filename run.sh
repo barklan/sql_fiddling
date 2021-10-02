@@ -131,7 +131,7 @@ function ms:alone {
 
 function ms:d {
     docker run --rm -e 'ACCEPT_EULA=Y' -p 1433:1433 -d \
-    -v $(pwd):/userdir -w /userdir \
+    -v ${PWD}:/userdir -w /userdir \
     --name 'msserver' 'mcr.microsoft.com/mssql/server:2019-latest'
 }
 
