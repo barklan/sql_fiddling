@@ -123,13 +123,27 @@ function ms:wip {
     _dc exec ms /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d demo
 }
 
-function ms:generic {
-    _use_env
-    docker run --rm -it -e "ACCEPT_EULA=Y" -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d demo
+function ms:alone {
+    docker run --rm -it -e 'ACCEPT_EULA=Y' -p 1433:1433 \
+    'mcr.microsoft.com/mssql/server:2019-latest' /opt/mssql-tools/bin/sqlcmd \
+    -S demosqlwesteurope.database.windows.net -U 'student_01' -P '!MiptSql_01' -d 'demo'
 }
 
-function ms:generic2 {
-    docker run --rm -it -e "ACCEPT_EULA=Y" -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest /opt/mssql-tools/bin/sqlcmd -S demosqlwesteurope.database.windows.net -U student_01 -P "!MiptSql_01" -d demo
+function ms:d {
+    docker run --rm -e 'ACCEPT_EULA=Y' -p 1433:1433 -d \
+    -v $(pwd):/userdir -w /userdir \
+    --name 'msserver' 'mcr.microsoft.com/mssql/server:2019-latest'
+}
+
+function ms:shell {
+    docker exec -it msserver /opt/mssql-tools/bin/sqlcmd \
+    -S demosqlwesteurope.database.windows.net -U 'student_01' -P '!MiptSql_01' -d 'demo'
+}
+
+function ms:exec {
+    docker exec -it msserver /opt/mssql-tools/bin/sqlcmd \
+    -S demosqlwesteurope.database.windows.net -U 'student_01' -P '!MiptSql_01' -d 'demo' \
+    -i 'temp.sql'
 }
 
 function db:dump {  # Make database dump.
