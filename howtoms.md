@@ -1,6 +1,6 @@
 ### MS SQL Server
 
-In every command replace `\` (backslash) with ``` (backtick) for Windows.
+For Windows: in every command replace `\` (backslash) at the end of line with `` ` `` (backtick).
 
 To connect:
 
