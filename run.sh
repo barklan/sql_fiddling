@@ -111,16 +111,14 @@ function sql:csv {
     cat "./sql/$1.sql" | _dc exec -T db psql -U postgres -d app --csv | tee ./data/output/psql_output.csv
 }
 
-function ms {
-    # todo modify this to connect to remote database
-    # -S server, -U user, -P password, -d database name
+function ms:exec {
     _use_env
-    _dc exec ms /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d $MS_SQL_SERVER_DB -i "/sql/$1.sql"
+    _dc exec ms /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d $MS_SQL_SERVER_DB -i "/usersql/stolen.sql"
 }
 
-function ms:wip {
+function ms:shell {
     _use_env
-    _dc exec ms /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD -d demo
+    _dc exec ms /opt/mssql-tools/bin/sqlcmd -S $MS_SQL_SERVER_HOST -U $MS_SQL_SERVER_USER -P $MS_SQL_SERVER_PASSWORD
 }
 
 function ms:alone {
@@ -129,18 +127,18 @@ function ms:alone {
     -S demosqlwesteurope.database.windows.net -U 'student_01' -P '!MiptSql_01' -d 'demo'
 }
 
-function ms:d {
+function ms:remote:d {
     docker run --rm -e 'ACCEPT_EULA=Y' -p 1433:1433 -d \
-    -v ${PWD}:/userdir -w /userdir \
+    -v ./sql/ms:/userdir -w /userdir \
     --name 'msserver' 'mcr.microsoft.com/mssql/server:2019-latest'
 }
 
-function ms:shell {
+function ms:remote:shell {
     docker exec -it msserver /opt/mssql-tools/bin/sqlcmd \
     -S demosqlwesteurope.database.windows.net -U 'student_01' -P '!MiptSql_01' -d 'demo'
 }
 
-function ms:exec {
+function ms:remote:exec {
     docker exec -it msserver /opt/mssql-tools/bin/sqlcmd \
     -S demosqlwesteurope.database.windows.net -U 'student_01' -P '!MiptSql_01' -d 'demo' \
     -i 'temp.sql'

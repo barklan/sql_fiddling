@@ -15,19 +15,6 @@ services:
     ports:
       - 5432:5432
 
-  ms:
-    image: 'mcr.microsoft.com/mssql/server:2019-latest'
-    volumes:
-      - ./sql:/sql
-    env_file:
-      - ./environment/.env
-    environment:
-      - ACCEPT_EULA=Y
-    ports:
-      - 1433:1433
-    # profiles:
-      # - extra
-
   pgadmin:
     image: 'dpage/pgadmin4'
     volumes:
