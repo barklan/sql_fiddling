@@ -38,4 +38,6 @@ To stop a container:
 docker stop msserver
 ```
 
+---
+
 [T-SQL reference here.](https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15)
