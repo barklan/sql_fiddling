@@ -8,7 +8,7 @@ docker run --rm -e 'ACCEPT_EULA=Y' -p 1433:1433 -d \
 --name 'msserver' 'mcr.microsoft.com/mssql/server:2019-latest'
 ```
 
-To open `sqlcmd` shell:
+To open `sqlcmd` shell in `demo` database:
 
 ```bash
 docker exec -it msserver /opt/mssql-tools/bin/sqlcmd \
