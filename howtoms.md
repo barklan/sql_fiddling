@@ -34,12 +34,6 @@ docker exec -it msserver /opt/mssql-tools/bin/sqlcmd \
 
 **`temp.sql` must be in the same directory where the first command was executed.**
 
-To stop a container:
-
-```bash
-docker stop msserver
-```
-
 ---
 
 [T-SQL reference here.](https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15)
