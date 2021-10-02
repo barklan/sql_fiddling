@@ -1,6 +1,6 @@
 ### MS SQL Server
 
-**For Windows**: in every command replace `\` (backslash) at the end of line with `` ` `` (backtick).
+**For Windows**: in every command replace `\` (backslash) at the end of line with `` ` `` (backtick). And use PowerShell.
 
 To connect:
 
