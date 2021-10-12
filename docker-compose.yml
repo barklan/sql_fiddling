@@ -27,6 +27,19 @@ services:
     logging:
       driver: "none"
 
+  pgweb:
+    container_name: pgweb
+    restart: always
+    image: sosedoff/pgweb
+    ports:
+      - "8081:8081"
+    links:
+      - db:db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/app?sslmode=disable
+    depends_on:
+      - db
+
 volumes:
   app-db-data:
   # ms-db-data:
