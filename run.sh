@@ -39,7 +39,7 @@ function _use_env {
 # * Local functions.
 
 function up {  # Run the stack without extra.
-    _dc down --remove-orphans && _dc build --parallel && _dc up -d "${@}"
+    _dc down --remove-orphans && _dc build --parallel && _dc up "${@}"
 }
 
 function up:e {  # Run the stack.
@@ -52,7 +52,7 @@ function down {  # Stop stack.
 
 function db:backup {  # Backup database internally. Beware of -c flag.
     echo "Making database backup..."
-    _dc_quiet exec db bash -c "pg_dump -U postgres app > dump_db_app.sql"
+    _dc_quiet exec db bash -c "pg_dump -U postgres app" > dump_db_app.sql
     echo "Database backup successful."
 }
 

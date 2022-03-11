@@ -1,61 +1,13 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "presentation": {
-        "clear": true,
+        "echo": true,
+        "reveal": "always",
         "focus": true,
-        "showReuseMessage": false,
-        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
     },
-    "type": "shell",
-    "problemMatcher": [],
     "tasks": [
-        {
-            "label": "lint",
-            "command": "./run.sh lint",
-        },
-        {
-            "label": "test",
-            "command": "bash run.sh test",
-            "presentation": {
-                "group": "test"
-            }
-        },
-        {
-            "label": "all checks",
-            "dependsOn": [
-                "test",
-                "lint"
-            ],
-        },
-        {
-            "label": "sql format",
-            "command": "bash run.sh lint:sql:fix ${relativeFile}",
-            "presentation": {
-                "close": true,
-            }
-        },
-        {
-            "label": "sql lint",
-            "command": "bash run.sh lint:sql ${relativeFile}",
-        },
-        {
-            "label": "sql run file",
-            "command": "bash run.sh sql ${file}",
-            "presentation": {
-                "reveal": "always",
-                "focus": false,
-            }
-        },
-        {
-            "label": "sql run current line",
-            "command": "bash run.sh sql:line ${file} ${lineNumber}",
-            "presentation": {
-                "clear": false,
-                "reveal": "always",
-                "focus": false,
-            }
-        }
     ],
 }

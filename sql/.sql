@@ -1,7 +1,10 @@
-SELECT * FROM schema_migrations_history;
-SELECT * FROM person;
+create table task6m(
+    id int,
+    val varchar(100)
+);
 
-\dt
-
-SELECT * FROM SYSOBJECTS WHERE xtype = 'U';
-GO
+insert into task6m(id, val) values
+(100, '566'),
+(101, '567'),
+(null, '596'),
+(104, null);

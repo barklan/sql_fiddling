@@ -2,12 +2,13 @@ version: "3.9"
 services:
 
   db:
-    image: 'postgres:13'
+    image: 'postgres:14'
+    restart: always
     volumes:
       - app-db-data:/var/lib/postgresql/data/pgdata
-      - ./data:/data
+      # - ./data:/data
     env_file:
-      - ./environment/.env
+      - ./.env
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
       # THIS IS UNSAFE!
@@ -19,13 +20,11 @@ services:
     image: 'dpage/pgadmin4'
     volumes:
       - pgadmin:/var/lib/pgadmin
-      - ./environment/db_servers.json:/pgadmin4/servers.json
+      # - ./environment/db_servers.json:/pgadmin4/servers.json
     env_file:
-      - ./environment/.env
+      - ./.env
     ports:
       - 5050:5050
-    logging:
-      driver: "none"
 
   pgweb:
     container_name: pgweb
